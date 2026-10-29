@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kaylee Xie · Ways of Seeing</title>
-<meta name="description" content="Kaylee Xie: watercolor paintings, three short films, and a pilot study on how European students watch Chinese micro-dramas.">
+<meta name="description" content="An art and design portfolio by Kaylee Xie in Nanjing. Watercolor and film follow the lines between the body, its surroundings and the people who encounter an image.">
 <meta name="theme-color" content="#f7f6f2">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kaylee Xie · Ways of Seeing">
-<meta property="og:description" content="Watercolor paintings, three short films, and a pilot study on how European students watch Chinese micro-dramas.">
+<meta property="og:description" content="Watercolor and film follow the lines between the body, its surroundings and the people who encounter an image. An art and design portfolio by Kaylee Xie.">
 <meta property="og:image" content="assets/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -112,8 +112,6 @@ html:not(.draft) .draft-only{display:none!important}
 .stage{position:relative;mix-blend-mode:multiply;opacity:0;transform:scale(.97);transition:opacity 1.5s var(--ease) .15s,transform 1.5s var(--ease) .15s;cursor:zoom-in}
 .ready .stage{opacity:1;transform:none}
 .stage img{width:100%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 94%,transparent 100%)}
-.lens{position:absolute;left:0;top:0;width:clamp(100px,12vw,190px);height:clamp(100px,12vw,190px);border-radius:50%;pointer-events:none;background-color:#fff;background-repeat:no-repeat;box-shadow:0 0 0 1.5px #fff,0 0 0 3px rgba(17,17,20,.85),0 24px 60px -12px rgba(20,20,60,.45);opacity:0;transition:opacity 1s ease;will-change:transform}
-.lens.on{opacity:1}
 .art-foot{margin:6px 4% 0 7%;font-size:14px;color:var(--ink-2)}
 .art-foot .it{color:var(--ink);font-size:16px}
 
@@ -136,11 +134,9 @@ html:not(.draft) .draft-only{display:none!important}
 .m-body{grid-column:6/13;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-width:0}
 .m-name{margin:0;font-weight:600;font-stretch:84%;font-size:clamp(64px,10.4vw,186px);line-height:.84;letter-spacing:-.055em;white-space:nowrap}
 .m-name em{font-weight:300;letter-spacing:-.03em;color:var(--ultra);padding-right:.05em}
+.m-name .greeting{display:block;margin-bottom:12px;font-size:clamp(22px,2.5vw,38px);line-height:1.2;letter-spacing:-.02em}
 .m-points{list-style:none;margin:0;padding:0;border-bottom:1px solid rgba(30,36,80,.16)}
-.m-points a{display:grid;grid-template-columns:1fr 24px;align-items:baseline;gap:16px;padding:17px 0;border-top:1px solid rgba(30,36,80,.16);font-size:clamp(17px,1.4vw,21px);letter-spacing:-.01em;transition:padding .4s var(--ease),color .3s}
-.m-points span{text-wrap:balance}
-.m-points a:hover{padding-left:12px;color:var(--ultra)}
-.m-points i{font-style:normal;text-align:right;color:var(--ultra)}
+.m-points p{margin:0;padding:17px 0;border-top:1px solid rgba(30,36,80,.16);font-size:clamp(17px,1.4vw,21px);letter-spacing:-.01em}
 
 /* ——— section heads ——— */
 section.block{padding-top:clamp(80px,9vw,140px)}
@@ -168,6 +164,7 @@ section.block{padding-top:clamp(80px,9vw,140px)}
 .jrow .media.mask.in:hover img{transform:scale(calc(var(--z,1) * 1.03))}
 .cap{display:flex;gap:12px;align-items:baseline;margin-top:11px;font-size:14px;color:var(--ink-2)}
 .cap .it{font-size:17px;color:var(--ink)}
+.work-note{margin:8px 0 0;font-size:15.5px;line-height:1.55;color:var(--ink-2);max-width:38em}
 
 /* ——— films ——— */
 #films{--accent:var(--rose)}
@@ -201,6 +198,8 @@ details .more p{font-size:15.5px;color:#3a3a40}
 .film .cap{margin-top:12px}
 .film p{margin:6px 0 0;font-size:15.5px;line-height:1.55;max-width:34em;color:#33333a}
 .film p.with{color:var(--ink-2);font-size:14.5px}
+.film details{margin-top:14px}
+.film .more p + p{margin-top:.9em}
 
 /* ——— research ——— */
 #research{--accent:var(--sky)}
@@ -323,7 +322,6 @@ html:not(.draft) .c-side{justify-content:flex-end}
   html{scroll-behavior:auto}
   .rv,.mask > *,.clip .w,.stage,.fadeup{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
   .wordmark,.hero-art::before{animation:none}
-  .lens{display:none}
 }
 </style>
 </head>
@@ -349,8 +347,7 @@ html:not(.draft) .c-side{justify-content:flex-end}
   <section class="hero wrap grid">
     <div class="hero-copy">
       <h1><span class="clip"><span class="w">Ways</span></span><span class="clip"><span class="w">of <em>Seeing.</em></span></span></h1>
-      <p class="tag fadeup">What changes when we look closer?</p>
-      <a class="link fadeup" href="#meet">Meet Kaylee <i aria-hidden="true">↓</i></a>
+      <p class="tag fadeup">I follow a line from the body into the world, through watercolor and film.</p>
     </div>
     <div class="hero-art">
       <div class="stage" id="stage" role="button" tabindex="0" aria-label="Open Reconnection"
@@ -359,7 +356,6 @@ html:not(.draft) .c-side{justify-content:flex-end}
            data-video="assets/video/reconnection-motion.mp4" data-vposter="assets/video/reconnection-motion.jpg">
         <img id="stageImg" src="assets/reconnection-cutout.jpg" width="1507" height="1017" fetchpriority="high" alt="Reconnection, watercolor: a branching neuron joined through a small chip to a reaching hand">
       </div>
-      <div class="lens" id="lens" aria-hidden="true"></div>
       <div class="art-foot fadeup"><span class="it">Reconnection</span>, 2025 · Watercolor on paper</div>
     </div>
   </section>
@@ -369,12 +365,11 @@ html:not(.draft) .c-side{justify-content:flex-end}
     <div class="wrap grid">
       <figure class="m-photo mask"><img src="assets/kaylee-studio-portrait.jpg" alt="Kaylee Xie at the easel" decoding="async"></figure>
       <div class="m-body">
-        <h2 class="m-name rv"><span id="mName">Kaylee <em>Xie</em></span></h2>
-        <ul class="m-points rv">
-          <li><a href="#films"><span>Painted <em>Reconnection</em> for a <span class="nw">brain–computer</span> interface ward after filming there</span><i aria-hidden="true">→</i></a></li>
-          <li><a href="#research"><span>Ran an EEG pilot study on how European students watch Chinese <span class="nw">micro-dramas</span></span><i aria-hidden="true">→</i></a></li>
-          <li><a href="#community"><span>Set up an art corner for my dance club</span><i aria-hidden="true">→</i></a></li>
-        </ul>
+        <h2 class="m-name rv"><span class="greeting">I'm</span> <span id="mName">Kaylee <em>Xie</em></span></h2>
+        <div class="m-points rv">
+          <p>Watercolor lets a line hold its shape while color slips beyond it. In my paintings, a brain grows into a garden and a body opens into water and sound. I use these familiar forms to approach the less visible experience of being inside a body.</p>
+          <p>I work in Nanjing, where filming takes this attention into gardens and hospital rooms. A small gesture can change the way a place is seen. I want to make images that leave space for another person's experience.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -387,13 +382,19 @@ html:not(.draft) .c-side{justify-content:flex-end}
         <button class="media mask" data-title="Signal Forest" data-meta="2025 · Watercolor on paper" data-view="assets/signal-forest.jpg" data-video="assets/video/signal-forest-motion.mp4" data-vposter="assets/video/signal-forest-motion.jpg" aria-label="Open Signal Forest">
           <img src="assets/signal-forest.jpg" width="1476" height="1011" alt="Signal Forest: a brain filled with green leaves and small flowers" loading="lazy" decoding="async">
         </button>
-        <figcaption class="cap"><span><span class="it">Signal Forest</span>, 2025</span></figcaption>
+        <figcaption>
+          <div class="cap"><span><span class="it">Signal Forest</span>, 2025</span></div>
+          <p class="work-note">Inside the brain's outline, leaves take the place of folds. Green emerges from violet, and small flowers interrupt the familiar anatomy. I imagine thought as something alive, capable of growing into a shape I cannot fully predict.</p>
+        </figcaption>
       </figure>
       <figure class="paint" style="--a:1.47">
         <button class="media mask" data-title="Perception Gate" data-meta="2025 · Watercolor on paper" data-view="assets/perception-gate.jpg" data-video="assets/video/perception-gate-motion.mp4" data-vposter="assets/video/perception-gate-motion.jpg" aria-label="Open Perception Gate">
           <img src="assets/perception-gate.jpg" width="1480" height="1006" alt="Perception Gate: a dancing figure in an archway, surrounded by music, water and branches" loading="lazy" decoding="async">
         </button>
-        <figcaption class="cap"><span><span class="it">Perception Gate</span>, 2025</span></figcaption>
+        <figcaption>
+          <div class="cap"><span><span class="it">Perception Gate</span>, 2025</span></div>
+          <p class="work-note">I let water, music and branching lines travel through a figure beneath an arch. Its open outline makes room for the surroundings to enter. The painting treats perception as something we live through with the whole body.</p>
+        </figcaption>
       </figure>
     </div>
     <div class="jrow">
@@ -403,25 +404,25 @@ html:not(.draft) .c-side{justify-content:flex-end}
                 data-video="assets/video/reconnection-motion.mp4" data-vposter="assets/video/reconnection-motion.jpg" aria-label="Open photos of Kaylee painting Reconnection">
           <img src="assets/photos/studio-reconnection-1400.jpg" srcset="assets/photos/studio-reconnection-1400.jpg 1400w, assets/photos/studio-reconnection-2400.jpg 2400w" sizes="(max-width:640px) 60vw, 28vw" style="--z:1.15;--o:68% 45%" alt="Kaylee at an easel painting Reconnection" loading="lazy" decoding="async">
         </button>
-        <figcaption class="cap"><span><span class="it">Reconnection</span>, in the studio</span></figcaption>
+        <figcaption class="cap"><span>Painting <span class="it">Reconnection</span></span></figcaption>
       </figure>
       <figure style="--a:.75">
         <button class="media mask" data-plain="Lotus, in progress" data-view="assets/photos/studio-lotus-2400.jpg" aria-label="Open photo of Kaylee painting a lotus">
           <img src="assets/photos/studio-lotus-1400.jpg" srcset="assets/photos/studio-lotus-1400.jpg 933w, assets/photos/studio-lotus-2400.jpg 1600w" sizes="(max-width:640px) 45vw, 20vw" style="--z:1.2;--o:35% 62%" alt="Kaylee painting a pink lotus on a canvas that carries a real dried lotus leaf" loading="lazy" decoding="async">
         </button>
-        <figcaption class="cap"><span>Lotus, in progress</span></figcaption>
+        <figcaption class="cap"><span>Painting a lotus beside a dried leaf</span></figcaption>
       </figure>
       <figure style="--a:.85">
         <button class="media mask" data-plain="Leaves, in progress" data-view="assets/photos/studio-leaves-2400.jpg" aria-label="Open photo of Kaylee painting leaves in watercolor">
           <img src="assets/photos/studio-leaves-1400.jpg" srcset="assets/photos/studio-leaves-1400.jpg 1400w, assets/photos/studio-leaves-2400.jpg 2400w" sizes="(max-width:640px) 45vw, 22vw" style="--z:1.2;--o:66% 40%" alt="Kaylee at an easel painting green leaves in watercolor" loading="lazy" decoding="async">
         </button>
-        <figcaption class="cap"><span>Leaves, in progress</span></figcaption>
+        <figcaption class="cap"><span>Studying the shapes of leaves in watercolor</span></figcaption>
       </figure>
       <figure style="--a:.85">
         <button class="media mask" data-plain="Flowers, in progress" data-view="assets/photos/studio-drawing-2400.jpg" aria-label="Open photo of Kaylee drawing flowers at a table">
           <img src="assets/photos/studio-drawing-1400.jpg" srcset="assets/photos/studio-drawing-1400.jpg 1400w, assets/photos/studio-drawing-2400.jpg 2400w" sizes="(max-width:640px) 45vw, 22vw" style="--z:1.25;--o:30% 80%" alt="Kaylee drawing flowers in fine pen beside a box of watercolors" loading="lazy" decoding="async">
         </button>
-        <figcaption class="cap"><span>Flowers, in progress</span></figcaption>
+        <figcaption class="cap"><span>Drawing flowers in fine lines</span></figcaption>
       </figure>
     </div>
   </section>
@@ -432,21 +433,20 @@ html:not(.draft) .c-side{justify-content:flex-end}
     <div class="grid films-top">
       <figure class="lead rv">
         <button class="screen" data-film="assets/films/one-movement-at-a-time.mp4" data-poster="assets/films/one-movement-at-a-time-1600.jpg" data-title="One Movement at a Time" data-meta="4:28" aria-label="Play the film One Movement at a Time, 4 minutes 28 seconds">
-          <img src="assets/films/one-movement-at-a-time-1600.jpg" srcset="assets/films/one-movement-at-a-time-960.jpg 960w, assets/films/one-movement-at-a-time-1600.jpg 1600w" sizes="(max-width:980px) 100vw, 62vw" alt="Kaylee in the training room of the brain–computer interface ward" loading="lazy" decoding="async">
+          <img src="assets/films/one-movement-at-a-time-1600.jpg" srcset="assets/films/one-movement-at-a-time-960.jpg 960w, assets/films/one-movement-at-a-time-1600.jpg 1600w" sizes="(max-width:980px) 100vw, 62vw" alt="Kaylee in the training room of the brain-computer interface ward" loading="lazy" decoding="async">
           <span class="play"><i></i><span>Play film</span><span class="dur">4:28</span></span>
         </button>
       </figure>
       <div class="story rv">
         <h3>One Movement at a Time</h3>
-        <p>Mr. Guo, paralyzed by an injury to the spinal cord in his neck, gripped a bottle of water, and everyone around him smiled. I wanted to know how a brain implant had made that possible, so I went to the <span class="nw">brain–computer</span> interface research ward at Jinling Hospital in Nanjing, where he had his surgery.</p>
-        <p>Afterward I painted <button class="open-work" data-opens="stage">Reconnection</button> and gave it to the ward.</p>
+        <p>The film begins with an ordinary gesture: a hand lifting a bottle of water. For Mr. Guo, who had been paralyzed by a spinal cord injury, a <span class="nw">brain-computer</span> interface and rehabilitation made that gesture possible. I visited Jinling Hospital in Nanjing to understand what lay behind it.</p>
+        <p><button class="open-work" data-opens="stage">Reconnection</button> grew out of that visit. A branching neuron and a reaching hand move toward each other across the paper, with a small chip between them. I gave the watercolor to the ward, hoping its gesture of contact would echo the movements being practiced there.</p>
         <p class="draft-only"><span class="tbd">[Kaylee’s role and year, e.g. “Presented and co-wrote, 2025”]</span></p>
         <details>
-          <summary>Read more</summary>
+          <summary aria-label="Read more about One Movement at a Time">Read more</summary>
           <div class="more">
-            <p>The ward is on the hospital’s top floor. I expected rows of beds. Instead there was an outpatient clinic and rooms for tests and treatment, laid out so that new patients walk past the training room on their way in and can watch people practicing with the equipment.</p>
-            <p>Some patients wear an EEG cap and imagine taking a step while an exoskeleton helps them walk. Mr. Guo used an implant and a pneumatic glove. The devices are different, but both first pick up the movement a person intends, then help the body carry it out.</p>
-            <p>When the doctors choose an approach, they also ask each patient: what would you most like to be able to do again?</p>
+            <p>I was struck by the way the rooms made the work visible. Patients entering the outpatient clinic pass the training room and can see others practicing with the equipment. An unfamiliar technology becomes something they can encounter through another person's effort.</p>
+            <p>The film includes EEG caps and an exoskeleton, as well as the implant and pneumatic glove used by Mr. Guo. I describe these devices through the actions they support. Alongside tests and study requirements, the doctors discuss what each patient hopes to do again, keeping a personal wish in view throughout the clinical work.</p>
           </div>
         </details>
       </div>
@@ -459,7 +459,14 @@ html:not(.draft) .c-side{justify-content:flex-end}
         </button>
         <figcaption>
           <div class="cap"><span class="it">The Porcelain Tower</span></div>
-          <p>Nanjing’s Porcelain Tower once appeared in European fairy tales. The new tower stands over its <span class="nw">Ming-dynasty</span> base without putting any weight on it.</p>
+          <p>The Porcelain Tower is a study in remembering through form. Its colored glass recalls an older glazed surface, while the new structure reaches around the surviving base. I am drawn to the way a contemporary building can hold a place for something lost.</p>
+          <details>
+            <summary aria-label="Read more about The Porcelain Tower">Read more</summary>
+            <div class="more">
+              <p>The original tower traveled far beyond Nanjing through European fairy tales. In its replacement, alternating visible and hidden levels and fused colored glass carry echoes of the earlier shape and material.</p>
+              <p>I was especially interested in what happens below the surface. The new tower widens toward the ground and carries its load outside the ancient base and underground chamber. Preservation becomes part of the building's structure, as well as its appearance.</p>
+            </div>
+          </details>
           <p class="with draft-only"><span class="tbd">[Kaylee’s role and year]</span></p>
         </figcaption>
       </figure>
@@ -470,8 +477,15 @@ html:not(.draft) .c-side{justify-content:flex-end}
         </button>
         <figcaption>
           <div class="cap"><span class="it">Zhan Garden</span></div>
-          <p>For much of its 600-year history, Zhan Garden was reserved for officials and nobles. Now it is open to everyone, and its pond is kept as a small ecosystem of plants, snails, mussels and fish.</p>
+          <p>The stillness of Zhan Garden is full of activity. Beneath the composed views, plants and small animals help sustain the pond. I follow that living detail, looking at a garden as a place that is continually being cared for.</p>
           <p class="with">With Yang Tao, deputy director of Zhan Garden.</p>
+          <details>
+            <summary aria-label="Read more about Zhan Garden">Read more</summary>
+            <div class="more">
+              <p>For much of its 600-year history, these views were reserved for officials and nobles. A restoration led by architect Liu Dunzhen helped turn the garden into a public place. The change in who can enter is part of the way I understand its beauty.</p>
+              <p>Deputy director Yang Tao describes the ecology maintained through aquatic plants, snails and river mussels. These relationships are easy to miss when looking at the pond as a picture. In the film, I stay with the birdsong, water and slower rhythm of walking, small experiences that make nature part of an ordinary day in the city.</p>
+            </div>
+          </details>
           <p class="with draft-only"><span class="tbd">[Kaylee’s role and year]</span></p>
         </figcaption>
       </figure>
@@ -480,10 +494,10 @@ html:not(.draft) .c-side{justify-content:flex-end}
 
   <!-- RESEARCH -->
   <section class="wrap block" id="research">
-    <div class="head rv"><h2>Research</h2><sup>pilot study</sup></div>
+    <div class="head rv"><h2>Research</h2><sup>audience study</sup></div>
     <div class="grid r-top">
       <div class="r-left rv">
-        <p class="question">When European students in Nanjing watch a Chinese <span class="nw">historical-romance</span> <span class="nw">micro-drama,</span> which moments reach them, and which <em>get lost?</em></p>
+        <p class="question">Learning to see a story through <em>someone else's eyes.</em></p>
         <p class="facts">12 participants · 2 <span class="nw">micro-dramas</span> · EEG, questionnaires and interviews</p>
       </div>
       <figure class="r-right draft-only">
@@ -492,23 +506,23 @@ html:not(.draft) .c-side{justify-content:flex-end}
     </div>
     <div class="grid r-cols">
       <div class="rv">
-        <h3>The question</h3>
-        <p>Micro-dramas move fast and lean on cultural shorthand, and they now reach viewers around the world with little more than subtitles. I wanted to know how much of that shorthand gets through to people who did not grow up with it.</p>
+        <h3>The viewer's part</h3>
+        <p>A story carries gestures and conventions its maker may take for granted. I wanted to attend to that distance when European viewers encountered Chinese <span class="nw">historical-romance</span> micro-dramas, bringing their own cultural experiences to images familiar to me.</p>
       </div>
       <div class="rv">
-        <h3>What I did</h3>
-        <p>I proposed the study and ran it with <span class="tbd" data-alt="a supervisor">[supervisor’s name]</span> at Nanjing University of Aeronautics and Astronautics. Twelve European students watched two micro-dramas while we recorded their brain activity with EEG. Afterward they filled out questionnaires and talked through what they had understood.</p>
+        <h3>Watching and listening</h3>
+        <p>I proposed and ran a pilot with <span class="tbd" data-alt="a supervisor">[supervisor's name]</span> at Nanjing University of Aeronautics and Astronautics. Twelve European students in Nanjing watched two micro-dramas during EEG recording. Questionnaires and interviews gave them room to describe what they had understood.</p>
       </div>
       <div class="rv">
-        <h3>What I found</h3>
-        <p>Comparing key sound effects with background music, we saw no consistent difference in neural synchrony across viewers. Twelve viewers is too few to say more.</p>
+        <h3>An open inquiry</h3>
+        <p>Comparing key sound effects with background music, we found no consistent difference in how closely viewers' EEG responses matched. With twelve participants, the result remains preliminary. I want to continue exploring the context each person brings to a scene.</p>
       </div>
     </div>
     <div class="r-more rv">
       <details>
-        <summary>What I would test next</summary>
+        <summary>Continuing the inquiry</summary>
         <div class="more">
-          <p>Humor, narrative tension and cultural familiarity, one at a time, to see which of them changes how closely viewers follow a scene. And whether a short cultural note at the right moment helps people understand a story without pulling them out of it.</p>
+          <p>In a follow-up, I would test humor, narrative tension and cultural familiarity separately, and try a brief cultural note within a scene. I am interested in the point at which context helps someone enter a story while preserving the rhythm of watching.</p>
         </div>
       </details>
     </div>
@@ -519,8 +533,8 @@ html:not(.draft) .c-side{justify-content:flex-end}
     <div class="head rv"><h2>Community</h2></div>
     <div class="grid c-grid">
       <figure class="c-poster">
-        <button class="media mask" data-plain="Poster for the Art Decompression Corner" data-view="assets/music-doodle-poster.jpg" aria-label="Open the poster">
-          <img src="assets/music-doodle-poster.jpg" width="1344" height="1888" alt="Kaylee’s poster for the Music &amp; Doodle Workshop: a red line drawing of a table and two chairs on pink and blue" loading="lazy" decoding="async">
+        <button class="media mask" data-plain="Music &amp; Doodle Workshop: poster for the Art Decompression Corner" data-view="assets/music-doodle-poster.jpg" aria-label="Open the workshop poster">
+          <img src="assets/music-doodle-poster.jpg" width="1344" height="1888" alt="Kaylee's Music &amp; Doodle Workshop poster: a red drawing of a table and two chairs on pink and blue" loading="lazy" decoding="async">
         </button>
       </figure>
       <figure class="c-photo mask">
@@ -528,10 +542,10 @@ html:not(.draft) .c-side{justify-content:flex-end}
       </figure>
       <div class="c-side">
         <div class="rv">
-          <h3>Art Decompression Corner</h3>
-          <p>Our dance club trains hard. From September, members could stay for twenty minutes after weekly practice to doodle, listen to music or just sit.</p>
-          <p>No one had to be good at drawing. I set up the corner and painted the poster.</p>
-          <p class="also">I also organized friends to play piano and flute for patients at rehabilitation centers.</p>
+          <h3>Music &amp; Doodle Workshop</h3>
+          <p>After dance practice, I wanted there to be room for a different kind of movement: a hand wandering over paper, with music nearby and no routine to remember. I set up the Art Decompression Corner so club members could draw or simply stay for a while.</p>
+          <p>On the poster, empty chairs gather around a shared table. Loose red lines sit against washes of pink and blue. I left the seats empty so the invitation could belong to anyone, including someone unsure of what to draw.</p>
+          <p class="also">I also brought friends together to play piano and flute for patients at rehabilitation centers. I am drawn to these shared encounters, where art takes its shape from the people present.</p>
         </div>
         <div class="draft-only">
           <div class="rail-head"><h4>Elsewhere</h4>
@@ -555,8 +569,8 @@ html:not(.draft) .c-side{justify-content:flex-end}
     <div class="head rv"><h2>About</h2></div>
     <div class="grid">
       <div class="a-text rv">
-        <p>Most of what’s here began with something I saw and kept thinking about: a paralyzed man gripping a bottle of water, or friends worn out after dance practice.</p>
-        <p>I paint mostly in watercolor. Film and research are how I try to <em>understand</em> something properly.</p>
+        <p>I am drawn to the point where recognition becomes imagination. A branch resembles a nerve; a body becomes a landscape. Familiar shapes give me a beginning without deciding everything an image must mean.</p>
+        <p>In watercolor, an edge can stay precise while a wash carries on beyond it. I want that balance in my work: <em>enough form to invite someone in,</em> enough openness for them to see something I have not.</p>
         <p class="draft-only"><span class="tbd">[One or two lines in Kaylee’s own words: her grade, and what she wants to study]</span></p>
       </div>
       <ul class="a-list rv">
@@ -633,23 +647,6 @@ html:not(.draft) .c-side{justify-content:flex-end}
   document.querySelectorAll('.mask').forEach(function(m){pre.observe(m)});
   var wm=document.querySelector('.wordmark');
   new IntersectionObserver(function(es,o){if(es[0].isIntersecting){wm.classList.add('lit');o.disconnect()}},{rootMargin:'1200px 0px'}).observe(wm);
-
-  /* cover lens: travels a fixed route across the painting (never follows the mouse) */
-  var stage=document.getElementById('stage'),img=document.getElementById('stageImg'),lens=document.getElementById('lens');
-  var Z=1.8,PERIOD=20000,
-      route=[[.17,.45],[.29,.33],[.40,.56],[.53,.46],[.66,.52],[.80,.42],[.62,.38],[.45,.40],[.30,.62],[.15,.20],[.09,.38]];
-  lens.style.backgroundImage='url('+img.getAttribute('src')+')';
-  function cr(p0,p1,p2,p3,t){var t2=t*t,t3=t2*t;return .5*((2*p1)+(-p0+p2)*t+(2*p0-5*p1+4*p2-p3)*t2+(-p0+3*p1-3*p2+p3)*t3)}
-  function at(u){var n=route.length,f=u*n,i=Math.floor(f),t=f-i;function P(k){return route[(k%n+n)%n]}
-    var a=P(i-1),b=P(i),c=P(i+1),d=P(i+2);return[cr(a[0],b[0],c[0],d[0],t),cr(a[1],b[1],c[1],d[1],t)]}
-  function place(x,y){var w=stage.clientWidth,h=stage.clientHeight,r=lens.offsetWidth/2;
-    lens.style.transform='translate3d('+(x-r)+'px,'+(y-r)+'px,0)';lens.style.backgroundSize=(w*Z)+'px '+(h*Z)+'px';lens.style.backgroundPosition=(-(x*Z-r))+'px '+(-(y*Z-r))+'px'}
-  var t0=performance.now(),lensOn=true;
-  if(!reduce){
-    setTimeout(function(){lens.classList.add('on')},1400);
-    new IntersectionObserver(function(es){lensOn=es[0].isIntersecting}).observe(stage);
-    (function loop(now){if(lensOn&&!document.hidden){var p=at(((now-t0)%PERIOD)/PERIOD);place(p[0]*stage.clientWidth,p[1]*stage.clientHeight)}requestAnimationFrame(loop)})(t0);
-  }
 
   /* scroll-linked motion */
   if(hasGsap&&!reduce){
@@ -739,6 +736,7 @@ html:not(.draft) .c-side{justify-content:flex-end}
         if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus()}}
     }
   });
+  document.querySelectorAll('details').forEach(function(detail){detail.addEventListener('toggle',function(){if(hasGsap)ScrollTrigger.refresh()})});
   addEventListener('load',function(){if(hasGsap)ScrollTrigger.refresh()});
 })();
 </script>
