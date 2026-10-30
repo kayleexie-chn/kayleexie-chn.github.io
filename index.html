@@ -7,9 +7,10 @@
 <meta name="description" content="An art and design portfolio by Kaylee Xie in Nanjing. Watercolor and film follow the lines between the body, its surroundings and the people who encounter an image.">
 <meta name="theme-color" content="#f7f6f2">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://kayleexie-chn.github.io/">
 <meta property="og:title" content="Kaylee Xie · Ways of Seeing">
 <meta property="og:description" content="Watercolor and film follow the lines between the body, its surroundings and the people who encounter an image. An art and design portfolio by Kaylee Xie.">
-<meta property="og:image" content="assets/og-cover.jpg">
+<meta property="og:image" content="https://kayleexie-chn.github.io/assets/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -165,6 +166,25 @@ section.block{padding-top:clamp(80px,9vw,140px)}
 .cap{display:flex;gap:12px;align-items:baseline;margin-top:11px;font-size:14px;color:var(--ink-2)}
 .cap .it{font-size:17px;color:var(--ink)}
 .work-note{margin:8px 0 0;font-size:15.5px;line-height:1.55;color:var(--ink-2);max-width:38em}
+/* second row: a horizontal scroll; every item keeps the old row height, its width follows the picture */
+.jstrip{--bleed:calc((var(--vw,100vw) - min(var(--vw,100vw),1560px)) / 2 + var(--gutter));
+  --h:max(230px,calc((min(var(--vw,100vw),1560px) - 2 * var(--gutter) - 3 * var(--gap)) / 3.5));
+  display:flex;gap:var(--gap);margin:clamp(30px,3.2vw,50px) calc(var(--bleed) * -1) 0;padding:0 var(--bleed);scroll-padding:0 var(--bleed);
+  overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain}
+.jstrip::-webkit-scrollbar{display:none}
+.jstrip:focus-visible{outline-offset:-2px}
+.jstrip figure{flex:0 0 auto;width:calc(var(--h) * var(--a));margin:0}
+.jstrip .media{display:block;position:relative;width:100%;height:var(--h);overflow:hidden;background:var(--bg-2);cursor:zoom-in}
+.jstrip .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.jstrip .media.mask.in img{transition:transform 1.2s var(--ease),clip-path .8s var(--ease)}
+.jstrip .media.mask.in:hover img{transform:scale(1.03)}
+.jstrip-foot{display:flex;align-items:center;gap:20px;margin-top:22px}
+.jtrack{position:relative;flex:1;height:3px;background:linear-gradient(var(--line),var(--line)) 0 1px/100% 1px no-repeat}
+.jtrack i{position:absolute;inset:0;background-repeat:repeat-x;background-size:100% 3px}
+.jpause{display:grid;place-items:center}
+.jpause svg{width:12px;height:12px;fill:currentColor}
+.jpause .i-play,.jpause[aria-pressed="true"] .i-pause{display:none}
+.jpause[aria-pressed="true"] .i-play{display:block}
 
 /* ——— films ——— */
 #films{--accent:var(--rose)}
@@ -220,7 +240,7 @@ html:not(.draft) .r-left{grid-column:1/11}
 
 /* ——— community ——— */
 #community{--accent:var(--ochre)}
-.c-grid{align-items:end}
+.c-grid{align-items:end;padding-left:clamp(24px,4vw,64px)}
 .c-poster{grid-column:1/5;margin:0}
 .c-poster .media{display:block;width:100%;overflow:hidden;cursor:zoom-in}
 .c-poster img{width:100%;transition:transform 1.2s var(--ease)}
@@ -293,6 +313,7 @@ html:not(.draft) .c-side{justify-content:flex-end}
   .lead,.story{grid-column:1/-1}.story{margin-top:28px;max-width:40em}
   .r-left,html:not(.draft) .r-left,.r-right{grid-column:1/-1}.r-right{margin-top:40px}
   .r-cols > div{grid-column:1/-1}
+  .c-grid{padding-left:0}
   .c-poster{grid-column:1/8}.c-photo{grid-column:8/13}.c-side{grid-column:1/-1;margin-top:36px}
   .a-text,.a-list{grid-column:1/-1}.a-list{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--gap)}
 }
@@ -351,7 +372,7 @@ html:not(.draft) .c-side{justify-content:flex-end}
     </div>
     <div class="hero-art">
       <div class="stage" id="stage" role="button" tabindex="0" aria-label="Open Reconnection"
-           data-title="Reconnection" data-meta="2025 · Watercolor on paper" data-view="assets/reconnection.jpg"
+           data-title="Reconnection" data-meta="2025 · Watercolor on paper" data-view="assets/works/reconnection-2400.jpg"
            data-process="assets/photos/studio-reconnection-1400.jpg::assets/photos/studio-reconnection-2400.jpg::Painting {t}|assets/photos/studio-signing-1400.jpg::assets/photos/studio-signing-2400.jpg::Signing {t}"
            data-video="assets/video/reconnection-motion.mp4" data-vposter="assets/video/reconnection-motion.jpg">
         <img id="stageImg" src="assets/reconnection-cutout.jpg" width="1507" height="1017" fetchpriority="high" alt="Reconnection, watercolor: a branching neuron joined through a small chip to a reaching hand">
@@ -374,22 +395,22 @@ html:not(.draft) .c-side{justify-content:flex-end}
     </div>
   </section>
 
-  <!-- WORK: the paintings, then the studio -->
+  <!-- WORK: two key paintings, then a scroll of paintings with studio photographs beside them -->
   <section class="wrap block" id="work">
     <div class="head rv"><h2>Work</h2></div>
     <div class="jrow">
-      <figure class="paint" style="--a:1.46">
-        <button class="media mask" data-title="Signal Forest" data-meta="2025 · Watercolor on paper" data-view="assets/signal-forest.jpg" data-video="assets/video/signal-forest-motion.mp4" data-vposter="assets/video/signal-forest-motion.jpg" aria-label="Open Signal Forest">
-          <img src="assets/signal-forest.jpg" width="1476" height="1011" alt="Signal Forest: a brain filled with green leaves and small flowers" loading="lazy" decoding="async">
+      <figure class="paint" style="--a:1.436">
+        <button class="media mask" data-title="Signal Forest" data-meta="2025 · Watercolor on paper" data-view="assets/works/signal-forest-2400.jpg" data-video="assets/video/signal-forest-motion.mp4" data-vposter="assets/video/signal-forest-motion.jpg" aria-label="Open Signal Forest">
+          <img src="assets/works/signal-forest-1400.jpg" srcset="assets/works/signal-forest-1400.jpg 1400w, assets/works/signal-forest-2400.jpg 2185w" sizes="(max-width:640px) 100vw, 50vw" width="2185" height="1522" alt="Signal Forest: a brain filled with green leaves and small flowers" loading="lazy" decoding="async">
         </button>
         <figcaption>
           <div class="cap"><span><span class="it">Signal Forest</span>, 2025</span></div>
           <p class="work-note">Inside the brain's outline, leaves take the place of folds. Green emerges from violet, and small flowers interrupt the familiar anatomy. I imagine thought as something alive, capable of growing into a shape I cannot fully predict.</p>
         </figcaption>
       </figure>
-      <figure class="paint" style="--a:1.47">
-        <button class="media mask" data-title="Perception Gate" data-meta="2025 · Watercolor on paper" data-view="assets/perception-gate.jpg" data-video="assets/video/perception-gate-motion.mp4" data-vposter="assets/video/perception-gate-motion.jpg" aria-label="Open Perception Gate">
-          <img src="assets/perception-gate.jpg" width="1480" height="1006" alt="Perception Gate: a dancing figure in an archway, surrounded by music, water and branches" loading="lazy" decoding="async">
+      <figure class="paint" style="--a:1.501">
+        <button class="media mask" data-title="Perception Gate" data-meta="2025 · Watercolor on paper" data-view="assets/works/perception-gate-2400.jpg" data-video="assets/video/perception-gate-motion.mp4" data-vposter="assets/video/perception-gate-motion.jpg" aria-label="Open Perception Gate">
+          <img src="assets/works/perception-gate-1400.jpg" srcset="assets/works/perception-gate-1400.jpg 1400w, assets/works/perception-gate-2400.jpg 2051w" sizes="(max-width:640px) 100vw, 50vw" width="2051" height="1366" alt="Perception Gate: a dancing figure in an archway, surrounded by music, water and branches" loading="lazy" decoding="async">
         </button>
         <figcaption>
           <div class="cap"><span><span class="it">Perception Gate</span>, 2025</span></div>
@@ -397,33 +418,62 @@ html:not(.draft) .c-side{justify-content:flex-end}
         </figcaption>
       </figure>
     </div>
-    <div class="jrow">
-      <figure style="--a:1.05">
-        <button class="media mask" data-title="Reconnection" data-meta="2025 · Watercolor on paper" data-start="1" data-view="assets/reconnection.jpg"
+
+    <!-- one height for every item; each width follows its picture -->
+    <div class="jstrip" id="jstrip" tabindex="0" role="region" aria-label="More paintings and studio photographs" data-lenis-prevent-horizontal>
+      <figure style="--a:1.451">
+        <button class="media mask" data-title="Reconnection" data-meta="2025 · Watercolor on paper" data-view="assets/works/reconnection-2400.jpg"
+                data-process="assets/photos/studio-reconnection-1400.jpg::assets/photos/studio-reconnection-2400.jpg::Painting {t}|assets/photos/studio-signing-1400.jpg::assets/photos/studio-signing-2400.jpg::Signing {t}"
+                data-video="assets/video/reconnection-motion.mp4" data-vposter="assets/video/reconnection-motion.jpg" aria-label="Open Reconnection">
+          <img src="assets/works/reconnection-1400.jpg" srcset="assets/works/reconnection-1400.jpg 1400w, assets/works/reconnection-2400.jpg 2116w" sizes="(max-width:640px) 340px, 37vw" width="2116" height="1458" alt="Reconnection: a branching neuron joined through a small chip to a reaching hand, on a violet wash" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="cap"><span><span class="it">Reconnection</span>, 2025</span></figcaption>
+      </figure>
+      <figure style="--a:1.488">
+        <button class="media mask" data-title="Reconnection" data-meta="2025 · Watercolor on paper" data-start="1" data-view="assets/works/reconnection-2400.jpg"
                 data-process="assets/photos/studio-reconnection-1400.jpg::assets/photos/studio-reconnection-2400.jpg::Painting {t}|assets/photos/studio-signing-1400.jpg::assets/photos/studio-signing-2400.jpg::Signing {t}"
                 data-video="assets/video/reconnection-motion.mp4" data-vposter="assets/video/reconnection-motion.jpg" aria-label="Open photos of Kaylee painting Reconnection">
-          <img src="assets/photos/studio-reconnection-1400.jpg" srcset="assets/photos/studio-reconnection-1400.jpg 1400w, assets/photos/studio-reconnection-2400.jpg 2400w" sizes="(max-width:640px) 60vw, 28vw" style="--z:1.15;--o:68% 45%" alt="Kaylee at an easel painting Reconnection" loading="lazy" decoding="async">
+          <img src="assets/photos/studio-reconnection-1400.jpg" srcset="assets/photos/studio-reconnection-1400.jpg 1400w, assets/photos/studio-reconnection-2400.jpg 2400w" sizes="(max-width:640px) 350px, 38vw" width="1400" height="941" alt="Kaylee at an easel painting Reconnection" loading="lazy" decoding="async">
         </button>
         <figcaption class="cap"><span>Painting <span class="it">Reconnection</span></span></figcaption>
       </figure>
-      <figure style="--a:.75">
-        <button class="media mask" data-plain="Lotus, in progress" data-view="assets/photos/studio-lotus-2400.jpg" aria-label="Open photo of Kaylee painting a lotus">
-          <img src="assets/photos/studio-lotus-1400.jpg" srcset="assets/photos/studio-lotus-1400.jpg 933w, assets/photos/studio-lotus-2400.jpg 1600w" sizes="(max-width:640px) 45vw, 20vw" style="--z:1.2;--o:35% 62%" alt="Kaylee painting a pink lotus on a canvas that carries a real dried lotus leaf" loading="lazy" decoding="async">
+      <figure style="--a:1.429">
+        <button class="media mask" data-title="Lotus Pond" data-meta="Watercolor on paper" data-view="assets/works/lotus-pond-2400.jpg"
+                data-process="assets/photos/studio-leaves-1400.jpg::assets/photos/studio-leaves-2400.jpg::Painting {t}" aria-label="Open Lotus Pond">
+          <img src="assets/works/lotus-pond-1400.jpg" srcset="assets/works/lotus-pond-1400.jpg 1400w, assets/works/lotus-pond-2400.jpg 2041w" sizes="(max-width:640px) 330px, 36vw" width="2041" height="1428" alt="Lotus Pond: broad lotus leaves in blue and green around a pink bud, over a lilac wash" loading="lazy" decoding="async">
         </button>
-        <figcaption class="cap"><span>Painting a lotus beside a dried leaf</span></figcaption>
+        <figcaption class="cap"><span><span class="it tbd" data-alt="Lotus Pond">Lotus Pond</span></span></figcaption>
       </figure>
-      <figure style="--a:.85">
-        <button class="media mask" data-plain="Leaves, in progress" data-view="assets/photos/studio-leaves-2400.jpg" aria-label="Open photo of Kaylee painting leaves in watercolor">
-          <img src="assets/photos/studio-leaves-1400.jpg" srcset="assets/photos/studio-leaves-1400.jpg 1400w, assets/photos/studio-leaves-2400.jpg 2400w" sizes="(max-width:640px) 45vw, 22vw" style="--z:1.2;--o:66% 40%" alt="Kaylee at an easel painting green leaves in watercolor" loading="lazy" decoding="async">
+      <figure style="--a:1.442">
+        <button class="media mask" data-title="Lotus Pond" data-meta="Watercolor on paper" data-start="1" data-view="assets/works/lotus-pond-2400.jpg"
+                data-process="assets/photos/studio-leaves-1400.jpg::assets/photos/studio-leaves-2400.jpg::Painting {t}" aria-label="Open photo of Kaylee painting Lotus Pond">
+          <img src="assets/photos/studio-leaves-1400.jpg" srcset="assets/photos/studio-leaves-1400.jpg 1400w, assets/photos/studio-leaves-2400.jpg 2400w" sizes="(max-width:640px) 330px, 36vw" width="1400" height="971" alt="Kaylee at an easel painting green leaves in watercolor" loading="lazy" decoding="async">
         </button>
         <figcaption class="cap"><span>Studying the shapes of leaves in watercolor</span></figcaption>
       </figure>
-      <figure style="--a:.85">
-        <button class="media mask" data-plain="Flowers, in progress" data-view="assets/photos/studio-drawing-2400.jpg" aria-label="Open photo of Kaylee drawing flowers at a table">
-          <img src="assets/photos/studio-drawing-1400.jpg" srcset="assets/photos/studio-drawing-1400.jpg 1400w, assets/photos/studio-drawing-2400.jpg 2400w" sizes="(max-width:640px) 45vw, 22vw" style="--z:1.25;--o:30% 80%" alt="Kaylee drawing flowers in fine pen beside a box of watercolors" loading="lazy" decoding="async">
+      <figure style="--a:1.452">
+        <button class="media mask" data-title="Melody" data-meta="Watercolor on paper" data-view="assets/works/melody-2400.jpg"
+                data-process="assets/photos/studio-drawing-1400.jpg::assets/photos/studio-drawing-2400.jpg::Drawing {t}" aria-label="Open Melody">
+          <img src="assets/works/melody-1400.jpg" srcset="assets/works/melody-1400.jpg 1400w, assets/works/melody-2400.jpg 2089w" sizes="(max-width:640px) 340px, 37vw" width="2089" height="1439" alt="Melody: a woman with closed eyes, her hair flowing into ribbons of color, music notes and blossoms" loading="lazy" decoding="async">
         </button>
-        <figcaption class="cap"><span>Drawing flowers in fine lines</span></figcaption>
+        <figcaption class="cap"><span><span class="it tbd" data-alt="Melody">Melody</span></span></figcaption>
       </figure>
+      <figure style="--a:1.416">
+        <button class="media mask" data-title="Zhan Garden" data-meta="Watercolor on paper" data-view="assets/works/zhan-garden-2400.jpg" aria-label="Open Zhan Garden">
+          <img src="assets/works/zhan-garden-1400.jpg" srcset="assets/works/zhan-garden-1400.jpg 1400w, assets/works/zhan-garden-2400.jpg 2171w" sizes="(max-width:640px) 330px, 36vw" width="2171" height="1533" alt="Zhan Garden: a tree-lined path past white walls and blue-tiled roofs, with the garden gate behind" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="cap"><span><span class="it tbd" data-alt="Zhan Garden">Zhan Garden</span></span></figcaption>
+      </figure>
+      <figure style="--a:.667">
+        <button class="media mask" data-plain="Lotus, in progress" data-view="assets/photos/studio-lotus-2400.jpg" aria-label="Open photo of Kaylee painting a lotus">
+          <img src="assets/photos/studio-lotus-1400.jpg" srcset="assets/photos/studio-lotus-1400.jpg 933w, assets/photos/studio-lotus-2400.jpg 1600w" sizes="(max-width:640px) 160px, 17vw" width="933" height="1400" alt="Kaylee painting a pink lotus on a canvas that carries a real dried lotus leaf" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="cap"><span>Painting a lotus beside a dried leaf</span></figcaption>
+      </figure>
+    </div>
+    <div class="jstrip-foot">
+      <div class="jtrack" aria-hidden="true"><i id="jthumb"></i></div>
+      <div class="arrows"><button id="jPause" class="jpause" aria-label="Pause the scrolling paintings" aria-pressed="false"><svg class="i-pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="2.5" y="2" width="2.4" height="8"/><rect x="7.1" y="2" width="2.4" height="8"/></svg><svg class="i-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 2.2v7.6L10 6z"/></svg></button><button id="jPrev" aria-label="Scroll paintings back">←</button><button id="jNext" aria-label="Scroll paintings forward">→</button></div>
     </div>
   </section>
 
@@ -482,7 +532,7 @@ html:not(.draft) .c-side{justify-content:flex-end}
           <details>
             <summary aria-label="Read more about Zhan Garden">Read more</summary>
             <div class="more">
-              <p>For much of its 600-year history, these views were reserved for officials and nobles. A restoration led by architect Liu Dunzhen helped turn the garden into a public place. The change in who can enter is part of the way I understand its beauty.</p>
+              <p>For much of the garden's 600-year history, its views were reserved for officials and nobles. A restoration led by architect Liu Dunzhen helped turn the garden into a public place. The change in who can enter is part of the way I understand its beauty.</p>
               <p>Deputy director Yang Tao describes the ecology maintained through aquatic plants, snails and river mussels. These relationships are easy to miss when looking at the pond as a picture. In the film, I stay with the birdsong, water and slower rhythm of walking, small experiences that make nature part of an ordinary day in the city.</p>
             </div>
           </details>
@@ -644,7 +694,7 @@ html:not(.draft) .c-side{justify-content:flex-end}
   document.querySelectorAll('.rv,.mask').forEach(function(el){io.observe(el)});
   /* clipped images count as hidden to the browser, so fetch them before the reveal starts */
   var pre=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('img[loading=lazy]').forEach(function(i){i.loading='eager'});pre.unobserve(e.target)}})},{rootMargin:'1500px 0px'});
-  document.querySelectorAll('.mask').forEach(function(m){pre.observe(m)});
+  document.querySelectorAll('.mask,.jstrip').forEach(function(m){pre.observe(m)});
   var wm=document.querySelector('.wordmark');
   new IntersectionObserver(function(es,o){if(es[0].isIntersecting){wm.classList.add('lit');o.disconnect()}},{rootMargin:'1200px 0px'}).observe(wm);
 
@@ -655,6 +705,69 @@ html:not(.draft) .c-side{justify-content:flex-end}
     gsap.fromTo('.m-photo img',{yPercent:-6,scale:1.12},{yPercent:6,scale:1.12,ease:'none',scrollTrigger:{trigger:'.meet',start:'top bottom',end:'bottom top',scrub:true}});
     gsap.fromTo('.wordmark',{yPercent:30,scale:.92},{yPercent:0,scale:1,ease:'none',scrollTrigger:{trigger:'.wordmark',start:'top bottom',end:'bottom bottom',scrub:true}});
   }
+
+  /* work scroll: a slow looping drift (paused on hover, focus, touch, the viewer, or the pause button), arrows and a progress line */
+  var strip=document.getElementById('jstrip'),jthumb=document.getElementById('jthumb'),jPrev=document.getElementById('jPrev'),jNext=document.getElementById('jNext'),jPause=document.getElementById('jPause');
+  var originals=[].slice.call(strip.children);
+  /* one copy of the set follows the originals, so the drift can wrap without a visible jump */
+  originals.forEach(function(f){var c=f.cloneNode(true);c.classList.add('clone');c.setAttribute('aria-hidden','true');
+    c.querySelectorAll('button').forEach(function(b){b.tabIndex=-1});c.querySelectorAll('img').forEach(function(i){i.alt=''});strip.appendChild(c)});
+  strip.querySelectorAll('.clone .mask').forEach(function(m){io.observe(m)});
+  var firstClone=strip.querySelector('.clone'),setW=0,pos=0,lastSet=-1,holdUntil=0,lastT=0,raf=0,hover=false,kbFocus=false,inView=false,userPaused=reduce;
+  function setVw(){document.documentElement.style.setProperty('--vw',document.documentElement.clientWidth+'px')}
+  function measure(){setW=firstClone.getBoundingClientRect().left-originals[0].getBoundingClientRect().left}
+  function jUpdate(){
+    if(setW<=0)return;
+    var x=((strip.scrollLeft%setW)+setW)%setW,w=Math.min(1,strip.clientWidth/setW),p=(w*100).toFixed(2);
+    jthumb.style.backgroundImage='linear-gradient(90deg,var(--ink) 0 '+p+'%,transparent '+p+'% 100%)';
+    jthumb.style.backgroundPosition=(x/setW*jthumb.clientWidth).toFixed(1)+'px 0';
+  }
+  function hold(ms){holdUntil=performance.now()+ms}
+  function viewerOpen(){var v=document.getElementById('viewer');return v&&v.classList.contains('open')}
+  function tick(t){
+    raf=requestAnimationFrame(tick);
+    var dt=lastT?Math.min(50,t-lastT):16;lastT=t;
+    var cur=strip.scrollLeft;
+    if(lastSet>=0&&Math.abs(cur-lastSet)>1.5){pos=cur;hold(2500)}            /* someone else moved it: the reader or the arrows */
+    if(!userPaused&&!hover&&!kbFocus&&!viewerOpen()&&t>holdUntil&&setW>0){
+      pos+=Math.max(18,Math.min(34,strip.clientWidth*.022))*dt/1000;
+      if(pos>=setW)pos-=setW;
+      strip.scrollLeft=pos;
+    }else pos=cur;
+    lastSet=strip.scrollLeft;jUpdate();
+  }
+  function run(){var on=inView&&!document.hidden;if(on&&!raf){lastT=0;lastSet=-1;hold(1200);raf=requestAnimationFrame(tick)}else if(!on&&raf){cancelAnimationFrame(raf);raf=0}}
+  new IntersectionObserver(function(es){inView=es[0].isIntersecting;run()}).observe(strip);
+  document.addEventListener('visibilitychange',run);
+  strip.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')hover=true});
+  strip.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'){hover=false;hold(600)}});
+  strip.addEventListener('pointerdown',function(){hold(4000)});
+  strip.addEventListener('touchstart',function(){hold(4000)},{passive:true});
+  var tabbing=false;addEventListener('keydown',function(e){if(e.key==='Tab')tabbing=true},true);addEventListener('pointerdown',function(){tabbing=false},true);
+  strip.parentNode.addEventListener('focusin',function(){if(tabbing)kbFocus=true});
+  strip.parentNode.addEventListener('focusout',function(){kbFocus=false});
+  jPause.addEventListener('click',function(){userPaused=!userPaused;jPause.setAttribute('aria-pressed',userPaused);
+    jPause.setAttribute('aria-label',(userPaused?'Play':'Pause')+' the scrolling paintings');if(!userPaused)hold(300)});
+  if(reduce)jPause.hidden=true;
+  /* step about two-thirds of a screen, landing on the left edge of a picture */
+  function jStep(d){
+    measure();
+    var x=strip.scrollLeft;
+    if(d>0&&x>=setW){x-=setW;strip.scrollLeft=x}else if(d<0&&x<strip.clientWidth){x+=setW;strip.scrollLeft=x}
+    var pad=parseFloat(getComputedStyle(strip).paddingLeft)||0,max=strip.scrollWidth-strip.clientWidth,
+        goal=x+d*Math.max(200,strip.clientWidth*.7),left=strip.getBoundingClientRect().left,stops=[],to=null;
+    [].forEach.call(strip.children,function(f){stops.push(Math.min(max,Math.max(0,f.getBoundingClientRect().left-left+x-pad)))});
+    stops.forEach(function(q){if(d>0&&q>x+4&&q<=goal)to=q;if(d<0&&q<x-4&&q>=goal&&to===null)to=q});
+    if(to===null)stops.forEach(function(q){if(d>0&&q>x+4&&to===null)to=q;if(d<0&&q<x-4)to=q});
+    if(to===null)to=d>0?max:0;
+    hold(3000);lastSet=strip.scrollLeft;
+    strip.scrollTo({left:to,behavior:reduce?'auto':'smooth'});
+  }
+  jPrev.addEventListener('click',function(){jStep(-1)});
+  jNext.addEventListener('click',function(){jStep(1)});
+  strip.addEventListener('scroll',function(){if(!raf)jUpdate()},{passive:true});
+  addEventListener('resize',function(){setVw();measure();jUpdate()});
+  setVw();measure();jUpdate();
 
   /* community rail (draft mode only) */
   var rail=document.getElementById('rail');
