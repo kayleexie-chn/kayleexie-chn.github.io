@@ -93,13 +93,13 @@ p em,p .it,.cap .it,li em{font-size:1.14em;line-height:1}
 .clip .w{display:inline-block;transform:translateY(105%);transition:transform 1.1s var(--ease)}
 .ready .clip .w{transform:none}
 .ready .clip + .clip .w{transition-delay:.1s}
-.tag{margin:calc(var(--h1) * .4) 0 0 calc(var(--h1) * .81);max-width:24em;font-size:clamp(16.5px,1.28vw,19.5px);line-height:1.52;letter-spacing:-.005em;color:var(--ink-2);text-wrap:pretty}
+.tag{margin:calc(var(--h1) * .4) 0 0 calc(var(--h1) * .81);max-width:24em;font-size:clamp(18px,1.55vw,24px);line-height:1.45;letter-spacing:-.012em;color:#2c2c33;text-wrap:pretty}
 .tag em{color:var(--ultra)}
 /* three phrases, one per line */
 .tag .tl{display:block}
 @media (min-width:981px) and (max-width:1079px){.tag{margin-left:0}}
 /* lower the title block so the statement's last line meets the painting's lower edge */
-@media (min-width:981px){.hero-copy{padding-top:calc(var(--h1) * .3)}}
+@media (min-width:981px){.hero-copy{padding-top:calc(var(--h1) * .55)}}
 .fadeup{opacity:0;transform:translateY(12px);transition:opacity .9s var(--ease) .35s,transform .9s var(--ease) .35s}
 .ready .fadeup{opacity:1;transform:none}
 .hero .link i{display:inline-block}
@@ -116,13 +116,17 @@ p em,p .it,.cap .it,li em{font-size:1.14em;line-height:1}
 .art-foot{margin:6px 4% 0 7%;font-size:14px;color:var(--ink-2)}
 .art-cap{margin:0}
 .art-foot .art-cap .it{color:var(--ink);font-size:16px}
-/* the first sentence of the story under the painting; the rest opens in place */
-.art-story{margin-top:10px;max-width:44em}
-.art-line,.art-rest{margin:0;font-size:14.5px;line-height:1.6;color:#3a3a40;text-wrap:pretty}
-.art-rest{margin-top:.7em}
-.art-more{display:inline-flex;align-items:baseline;gap:8px;margin-left:.35em;padding-bottom:1px;border-bottom:1px solid currentColor;font-size:14px;font-weight:500;line-height:1.3;color:var(--ink);white-space:nowrap;transition:color .25s}
+/* one line of the story under the painting, Read more at its end; the rest opens in place */
+.art-story{display:flex;align-items:baseline;gap:14px;margin-top:10px}
+.art-line,.art-rest{margin:0;font-size:14.5px;line-height:1.6;color:var(--ink-2);text-wrap:pretty}
+.art-line{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.art-more{flex:none;display:inline-flex;align-items:baseline;gap:8px;padding-bottom:1px;border-bottom:1px solid currentColor;font-size:14px;font-weight:500;line-height:1.3;color:var(--ink);white-space:nowrap;transition:color .25s}
 .art-more::after{content:"+";color:var(--ultra)}
 .art-more:hover{color:var(--ultra)}
+.art-story.open{display:block;max-width:46em}
+.art-story.open .art-line{white-space:normal}
+.art-story.open .art-rest{margin-top:.7em}
+.art-story.open .art-more{margin-left:.35em}
 .art-story.open .art-more::after{content:"–"}
 
 /* ——— meet Kaylee ——— */
@@ -326,6 +330,7 @@ details .more p{font-size:15.5px;color:#3a3a40}
   .top .wrap{height:62px}
   .hero{padding-top:92px}
   .hero{--h1:clamp(60px,19vw,104px)}
+  .tag{font-size:16.5px}
   .art-foot{margin-left:7%}
   .meet{padding:84px 0 36px}
   .meet + .block{padding-top:28px}
@@ -384,8 +389,9 @@ details .more p{font-size:15.5px;color:#3a3a40}
       <div class="art-foot fadeup">
         <p class="art-cap"><span class="it">Reconnection</span>, 2025</p>
         <div class="art-story" id="artStory">
-          <p class="art-line">Inspired by filming the BCI documentary <span class="it">Reconnection</span> during my 2025 summer internship, I&nbsp;painted this watercolor of the same name. <button class="art-more" type="button" aria-expanded="false" aria-controls="artRest">Read more</button></p>
-          <p class="art-rest" id="artRest" hidden>A chip bridges a broken neural pathway, carrying signals toward a hand and symbolizing hope for restored movement. I brought it back to the BCI ward to offer patients warmth and a sense of possibility.</p>
+          <p class="art-line">I&nbsp;painted this watercolor after helping film the BCI documentary <span class="it">Reconnection</span>.</p>
+          <p class="art-rest" id="artRest" hidden>The documentary was part of my 2025 summer internship, and the painting shares its name. A chip bridges a broken neural pathway, carrying signals toward a hand and symbolizing hope for restored movement. I brought it back to the BCI ward to offer patients warmth and a sense of possibility.</p>
+          <button class="art-more" type="button" aria-expanded="false" aria-controls="artRest">Read more</button>
         </div>
       </div>
     </div>
@@ -749,7 +755,7 @@ details .more p{font-size:15.5px;color:#3a3a40}
   var story=document.getElementById('artStory'),more=story.querySelector('.art-more'),rest=document.getElementById('artRest');
   var line=story.querySelector('.art-line');
   more.addEventListener('click',function(e){e.stopPropagation();var o=!story.classList.contains('open');story.classList.toggle('open',o);rest.hidden=!o;more.setAttribute('aria-expanded',o);
-    (o?rest:line).appendChild(more);more.focus({preventScroll:true});if(hasGsap)ScrollTrigger.refresh()});  /* the toggle always ends the visible text */
+    (o?rest:story).appendChild(more);more.focus({preventScroll:true});if(hasGsap)ScrollTrigger.refresh()});  /* the toggle always ends the visible text */
 
   /* Films replace their cover in place and load only after a play request. */
   document.querySelectorAll('#films [data-film]').forEach(function(button){
