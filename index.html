@@ -120,9 +120,9 @@ p em,p .it,.cap .it,li em{font-size:1.14em;line-height:1}
 .art-story{display:flex;align-items:baseline;gap:14px;margin-top:10px}
 .art-line,.art-rest{margin:0;font-size:14.5px;line-height:1.6;color:var(--ink-2);text-wrap:pretty}
 .art-line{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.art-more{flex:none;display:inline-flex;align-items:baseline;gap:8px;padding-bottom:1px;border-bottom:1px solid currentColor;font-size:14px;font-weight:500;line-height:1.3;color:var(--ink);white-space:nowrap;transition:color .25s}
-.art-more::after{content:"+";color:var(--ultra)}
-.art-more:hover{color:var(--ultra)}
+.art-more,.fold-more{flex:none;display:inline-flex;align-items:baseline;gap:8px;padding-bottom:1px;border-bottom:1px solid currentColor;font-size:14px;font-weight:500;line-height:1.3;color:var(--ink);white-space:nowrap;transition:color .25s}
+.art-more::after,.fold-more::after{content:"+";color:var(--ultra)}
+.art-more:hover,.fold-more:hover{color:var(--ultra)}
 .art-story.open{display:block;max-width:46em}
 .art-story.open .art-line{white-space:normal}
 .art-story.open .art-rest{margin-top:.7em}
@@ -193,6 +193,13 @@ section.block{padding-top:clamp(80px,9vw,140px)}
 .jstrip .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .jstrip .media.mask.in img{transition:transform 1.2s var(--ease),clip-path .8s var(--ease)}
 .jstrip .media.mask.in:hover img{transform:scale(1.03)}
+/* a one-line note under a work in the scroll, Read more at its end */
+.fold{display:flex;align-items:baseline;gap:12px;margin-top:5px}
+.fold p{flex:0 1 auto;min-width:0;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px;line-height:1.55;color:var(--ink-2)}
+.fold.open{display:block}
+.fold.open p{white-space:normal;text-wrap:pretty}
+.fold.open .fold-more{margin-left:.35em}
+.fold.open .fold-more::after{content:"–"}
 .jstrip-foot{display:flex;align-items:center;gap:20px;margin-top:22px}
 .jtrack{position:relative;flex:1;height:3px;background:linear-gradient(var(--line),var(--line)) 0 1px/100% 1px no-repeat}
 .jtrack i{position:absolute;inset:0;background-repeat:repeat-x;background-size:100% 3px}
@@ -439,11 +446,17 @@ details .more p{font-size:15.5px;color:#3a3a40}
     <!-- one height for every item; each width follows its picture -->
     <div class="jstrip" id="jstrip" tabindex="0" role="region" aria-label="More paintings and studio photographs" data-lenis-prevent-horizontal>
       <figure style="--a:1.429">
-        <button class="media mask" data-title="Lotus Pond" data-meta="Watercolor on paper" data-view="assets/works/lotus-pond-2400.jpg"
+        <button class="media mask" data-title="Lotus Pond" data-meta="2024 · Watercolor on paper" data-view="assets/works/lotus-pond-2400.jpg"
                 data-process="assets/photos/studio-leaves-1400.jpg::assets/photos/studio-leaves-2400.jpg::Painting {t}" aria-label="Open Lotus Pond">
           <img src="assets/works/lotus-pond-1400.jpg" srcset="assets/works/lotus-pond-1400.jpg 1400w, assets/works/lotus-pond-2400.jpg 2041w" sizes="(max-width:640px) 330px, 36vw" width="2041" height="1428" alt="Lotus Pond: broad lotus leaves in blue and green around a pink bud, over a lilac wash" loading="lazy" decoding="async">
         </button>
-        <figcaption class="cap"><span><span class="it">Lotus Pond</span></span></figcaption>
+        <figcaption>
+          <div class="cap"><span><span class="it">Lotus Pond</span>, 2024</span></div>
+          <div class="fold">
+            <p id="noteLotus">Mochou Lake’s breeze becomes a hazy wash; blue-green layers evoke cool, damp leaves, while pink-white buds suggest a faint, sweet lotus scent.</p>
+            <button class="fold-more" type="button" aria-expanded="false" aria-controls="noteLotus">Read more</button>
+          </div>
+        </figcaption>
       </figure>
       <figure style="--a:1.452">
         <button class="media mask" data-title="Melody" data-meta="Watercolor on paper" data-view="assets/works/melody-2400.jpg"
@@ -459,7 +472,7 @@ details .more p{font-size:15.5px;color:#3a3a40}
         <figcaption class="cap"><span><span class="it">Zhan Garden</span></span></figcaption>
       </figure>
       <figure style="--a:1.442">
-        <button class="media mask" data-title="Lotus Pond" data-meta="Watercolor on paper" data-start="1" data-view="assets/works/lotus-pond-2400.jpg"
+        <button class="media mask" data-title="Lotus Pond" data-meta="2024 · Watercolor on paper" data-start="1" data-view="assets/works/lotus-pond-2400.jpg"
                 data-process="assets/photos/studio-leaves-1400.jpg::assets/photos/studio-leaves-2400.jpg::Painting {t}" aria-label="Open photo of Kaylee painting Lotus Pond">
           <img src="assets/photos/studio-leaves-1400.jpg" srcset="assets/photos/studio-leaves-1400.jpg 1400w, assets/photos/studio-leaves-2400.jpg 2400w" sizes="(max-width:640px) 330px, 36vw" width="1400" height="971" alt="Kaylee at an easel painting green leaves in watercolor" loading="lazy" decoding="async">
         </button>
@@ -692,7 +705,7 @@ details .more p{font-size:15.5px;color:#3a3a40}
   var originals=[].slice.call(strip.children);
   /* one copy of the set follows the originals, so the drift can wrap without a visible jump */
   originals.forEach(function(f){var c=f.cloneNode(true);c.classList.add('clone');c.setAttribute('aria-hidden','true');
-    c.querySelectorAll('button').forEach(function(b){b.tabIndex=-1});c.querySelectorAll('img').forEach(function(i){i.alt=''});strip.appendChild(c)});
+    c.querySelectorAll('button').forEach(function(b){b.tabIndex=-1;b.removeAttribute('aria-controls')});c.querySelectorAll('[id]').forEach(function(x){x.removeAttribute('id')});c.querySelectorAll('img').forEach(function(i){i.alt=''});strip.appendChild(c)});
   strip.querySelectorAll('.clone .mask').forEach(function(m){io.observe(m)});
   var firstClone=strip.querySelector('.clone'),setW=0,pos=0,lastSet=-1,holdUntil=0,lastT=0,raf=0,hover=false,kbFocus=false,inView=false,userPaused=reduce;
   function setVw(){document.documentElement.style.setProperty('--vw',document.documentElement.clientWidth+'px')}
@@ -750,6 +763,11 @@ details .more p{font-size:15.5px;color:#3a3a40}
   addEventListener('resize',function(){setVw();measure();jUpdate()});
   setVw();measure();jUpdate();
 
+
+  /* notes under works: one line, Read more opens the rest */
+  document.addEventListener('click',function(e){var b=e.target.closest('.fold-more');if(!b)return;e.stopPropagation();
+    var f=b.closest('.fold'),p=f.querySelector('p'),o=!f.classList.contains('open');f.classList.toggle('open',o);b.setAttribute('aria-expanded',o);
+    (o?p:f).appendChild(b);b.focus({preventScroll:true})});
 
   /* the story under the hero painting */
   var story=document.getElementById('artStory'),more=story.querySelector('.art-more'),rest=document.getElementById('artRest');
