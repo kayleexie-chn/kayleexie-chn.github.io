@@ -754,8 +754,9 @@ details .more p{font-size:15.5px;color:#3a3a40}
     }else pos=cur;
     lastSet=strip.scrollLeft;jUpdate();
   }
-  function run(){var on=inView&&!document.hidden;if(on&&!raf){lastT=0;lastSet=-1;hold(1200);raf=requestAnimationFrame(tick)}else if(!on&&raf){cancelAnimationFrame(raf);raf=0}}
-  new IntersectionObserver(function(es){inView=es[0].isIntersecting;run()}).observe(strip);
+  function run(){var on=inView&&!document.hidden;if(on&&!raf){lastT=0;lastSet=-1;hold(500);raf=requestAnimationFrame(tick)}else if(!on&&raf){cancelAnimationFrame(raf);raf=0}}
+  /* start only once the row has come up into the lower part of the screen, a little before the reader reaches it */
+  new IntersectionObserver(function(es){inView=es[0].isIntersecting;run()},{rootMargin:'0px 0px -18% 0px'}).observe(strip);
   document.addEventListener('visibilitychange',run);
   strip.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')hover=true});
   strip.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'){hover=false;hold(600)}});
