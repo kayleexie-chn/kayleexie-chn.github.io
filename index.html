@@ -115,12 +115,14 @@ p em,p .it,.cap .it,li em{font-size:1.14em;line-height:1}
 .stage{position:relative;mix-blend-mode:multiply;opacity:0;transform:scale(.985);transition:opacity .6s var(--ease),transform .9s var(--ease);cursor:zoom-in}
 .ready .stage{opacity:1;transform:none}
 .stage img{width:100%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 94%,transparent 100%)}
+.lens{position:absolute;left:0;top:0;z-index:2;width:clamp(100px,12vw,190px);height:clamp(100px,12vw,190px);border-radius:50%;pointer-events:none;background-color:#fff;background-repeat:no-repeat;box-shadow:0 0 0 1.5px #fff,0 0 0 3px rgba(17,17,20,.85),0 24px 60px -12px rgba(20,20,60,.45);opacity:0;transition:opacity 1s ease;will-change:transform}
+.lens.on{opacity:1}
 .art-foot{margin:6px 4% 0 7%;font-size:14px;color:var(--ink-2)}
 .art-cap{margin:0}
-.art-foot .art-cap .it{color:var(--ink);font-size:16px}
+.art-foot .art-cap .it{color:var(--ink);font-size:16.5px}
 /* one line of the story under the painting, Read more at its end; the rest opens in place */
 .art-story{display:flex;align-items:baseline;gap:14px;margin-top:10px}
-.art-line,.art-rest{margin:0;font-size:14.5px;line-height:1.6;color:var(--ink-2);text-wrap:pretty}
+.art-line,.art-rest{margin:0;font-size:16px;line-height:1.6;color:var(--ink-2);text-wrap:pretty}
 .art-line{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .art-more,.fold-more{flex:none;display:inline-flex;align-items:baseline;gap:8px;padding-bottom:1px;border-bottom:1px solid currentColor;font-size:14px;font-weight:500;line-height:1.3;color:var(--ink);white-space:nowrap;transition:color .25s}
 .art-more::after,.fold-more::after{content:"+";color:var(--ultra)}
@@ -177,9 +179,9 @@ section.block{padding-top:clamp(80px,9vw,140px)}
 .jrow + .jrow{margin-top:clamp(30px,3.2vw,50px)}
 .jrow figure{flex:var(--a) 1 0;min-width:0;margin:0}
 .jrow .media{display:block;position:relative;width:100%;aspect-ratio:var(--a);overflow:hidden;text-align:left;background:var(--bg-2);cursor:zoom-in}
-.jrow .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.jrow .media.mask.in img{transform:scale(var(--z,1));transform-origin:var(--o,50% 50%);transition:transform 1.2s var(--ease),clip-path .8s var(--ease)}
-.jrow .media.mask.in:hover img{transform:scale(calc(var(--z,1) * 1.03))}
+.jrow .media img,.jrow .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.jrow .media.mask.in img,.jrow .media.mask.in video{transform:scale(var(--z,1));transform-origin:var(--o,50% 50%);transition:transform 1.2s var(--ease),clip-path .8s var(--ease)}
+.jrow .media.mask.in:hover img,.jrow .media.mask.in:hover video{transform:scale(calc(var(--z,1) * 1.03))}
 .cap{display:flex;gap:12px;align-items:baseline;margin-top:11px;font-size:14px;color:var(--ink-2)}
 .cap .it{font-size:17px;color:var(--ink)}
 .work-note{margin:8px 0 0;font-size:15.5px;line-height:1.55;color:var(--ink-2);max-width:38em}
@@ -362,6 +364,7 @@ details .more p{font-size:15.5px;color:#3a3a40}
   html{scroll-behavior:auto}
   .rv,.mask > *,.clip .w,.stage,.fadeup{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
   .wordmark,.hero-art::before{animation:none}
+  .lens{display:none}
 }
 </style>
 </head>
@@ -395,6 +398,7 @@ details .more p{font-size:15.5px;color:#3a3a40}
            data-video="assets/video/reconnection-motion.mp4" data-vposter="assets/video/reconnection-motion.jpg">
         <img id="stageImg" src="assets/reconnection-cutout-signed.jpg" width="1507" height="1017" fetchpriority="high" alt="Reconnection, watercolor: a branching neuron joined through a small chip to a reaching hand, signed by the artist">
       </div>
+      <div class="lens" id="lens" aria-hidden="true"></div>
       <div class="art-foot fadeup">
         <p class="art-cap"><span class="it">Reconnection</span>, 2025</p>
         <div class="art-story" id="artStory">
@@ -427,7 +431,7 @@ details .more p{font-size:15.5px;color:#3a3a40}
     <div class="jrow">
       <figure class="paint" style="--a:1.436">
         <button class="media mask" data-title="Signal Forest" data-meta="2025 · Watercolor on paper" data-view="assets/works/signal-forest-2400.jpg" data-video="assets/video/signal-forest-motion.mp4" data-vposter="assets/video/signal-forest-motion.jpg" aria-label="Open Signal Forest">
-          <img src="assets/works/signal-forest-1400.jpg" srcset="assets/works/signal-forest-1400.jpg 1400w, assets/works/signal-forest-2400.jpg 2185w" sizes="(max-width:640px) 100vw, 50vw" width="2185" height="1522" alt="Signal Forest: a brain filled with green leaves and small flowers" loading="lazy" decoding="async">
+          <video class="loop" src="assets/video/signal-forest-loop.mp4" poster="assets/video/signal-forest-loop.jpg" muted loop playsinline preload="metadata" width="1280" height="720" aria-hidden="true"></video>
         </button>
         <figcaption>
           <div class="cap"><span><span class="it">Signal Forest</span>, 2025</span></div>
@@ -636,6 +640,7 @@ details .more p{font-size:15.5px;color:#3a3a40}
       </div>
       <ul class="a-list rv">
         <li><span>Based in</span><span>Nanjing, China</span></li>
+        <li><span>School</span><span>British Columbia Academy,<br>Nanjing Foreign Language School</span></li>
         <li><span>Works in</span><span>Watercolor, film, research</span></li>
         <li><span>Contact</span><a href="mailto:kaylee66@126.com">kaylee66@126.com</a></li>
       </ul>
@@ -776,6 +781,40 @@ details .more p{font-size:15.5px;color:#3a3a40}
   addEventListener('resize',function(){setVw();measure();jUpdate()});
   setVw();measure();jUpdate();
 
+
+  /* hero lens: follows the pointer over the painting; otherwise travels a slow route across it */
+  (function(){
+    var stage=document.getElementById('stage'),img=document.getElementById('stageImg'),lens=document.getElementById('lens');
+    if(reduce||!lens)return;
+    var Z=1.8,PERIOD=20000,route=[[.17,.45],[.29,.33],[.40,.56],[.53,.46],[.66,.52],[.80,.42],[.62,.38],[.45,.40],[.30,.62],[.15,.20],[.09,.38]];
+    lens.style.backgroundImage='url('+img.getAttribute('src')+')';
+    function cr(p0,p1,p2,p3,t){var t2=t*t,t3=t2*t;return .5*((2*p1)+(-p0+p2)*t+(2*p0-5*p1+4*p2-p3)*t2+(-p0+3*p1-3*p2+p3)*t3)}
+    function at(u){var n=route.length,f=u*n,i=Math.floor(f),t=f-i;function P(k){return route[(k%n+n)%n]}
+      var a=P(i-1),b=P(i),c=P(i+1),d=P(i+2);return[cr(a[0],b[0],c[0],d[0],t),cr(a[1],b[1],c[1],d[1],t)]}
+    var pointer=null,cx=null,cy=null,t0=performance.now(),visible=true,last=t0;
+    stage.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var r=stage.getBoundingClientRect();pointer=[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height]});
+    stage.addEventListener('pointerleave',function(){pointer=null});
+    function place(x,y){var w=stage.clientWidth,h=stage.clientHeight,r=lens.offsetWidth/2;
+      lens.style.transform='translate3d('+(x-r)+'px,'+(y-r)+'px,0)';lens.style.backgroundSize=(w*Z)+'px '+(h*Z)+'px';lens.style.backgroundPosition=(-(x*Z-r))+'px '+(-(y*Z-r))+'px'}
+    setTimeout(function(){lens.classList.add('on')},900);
+    new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(stage);
+    (function loop(now){
+      requestAnimationFrame(loop);
+      var dt=Math.min(64,now-last);last=now;
+      if(!visible||document.hidden){t0+=dt;return}
+      var tgt=pointer||at(((now-t0)%PERIOD)/PERIOD);
+      if(cx===null){cx=tgt[0];cy=tgt[1]}
+      var k=1-Math.exp(-dt/(pointer?70:420));            /* quick to the pointer, gentle back to the route */
+      cx+=(tgt[0]-cx)*k;cy+=(tgt[1]-cy)*k;
+      place(cx*stage.clientWidth,cy*stage.clientHeight);
+    })(t0);
+  })();
+
+  /* animated works play only while on screen; reduced motion keeps the still frame */
+  document.querySelectorAll('video.loop').forEach(function(v){
+    if(reduce)return;
+    new IntersectionObserver(function(es){if(es[0].isIntersecting){v.preload='auto';play(v)}else v.pause()},{rootMargin:'200px 0px'}).observe(v);
+  });
 
   /* notes under works: one line, Read more opens the rest */
   document.addEventListener('click',function(e){var b=e.target.closest('.fold-more');if(!b)return;e.stopPropagation();
