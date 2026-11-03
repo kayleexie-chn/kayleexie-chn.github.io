@@ -256,9 +256,13 @@ details .more p{font-size:15.5px;color:#3a3a40}
 .r-left{grid-column:1/11}
 .question{margin:0;font-size:clamp(26px,2.9vw,46px);line-height:1.12;letter-spacing:-.03em;font-weight:450;font-stretch:92%}
 .question em{color:var(--sky);font-size:1.08em}
+.r-intro{margin:clamp(22px,2.2vw,32px) 0 0;max-width:44em;font-size:clamp(17px,1.3vw,19.5px);line-height:1.6;color:#33333a;text-wrap:pretty}
+.r-close{margin:clamp(30px,3vw,44px) 0 0;max-width:40em;font-size:clamp(17px,1.3vw,19.5px);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty}
 .facts{margin:clamp(20px,2.2vw,30px) 0 0;font-size:15px;color:var(--ink-2)}
-.r-cols{margin-top:clamp(56px,6vw,90px);row-gap:28px}
+.r-cols{margin-top:clamp(44px,4.6vw,72px);row-gap:28px}
 .r-cols > div{grid-column:span 4;border-top:1px solid var(--line);padding-top:16px}
+/* column widths follow the length of each section so the three end together */
+@media (min-width:981px){.r-cols{grid-template-columns:1fr .78fr 1.06fr}.r-cols > div{grid-column:auto}}
 .r-cols h3{margin:0 0 .5em;font-size:18px;font-weight:600;letter-spacing:-.01em}
 .r-cols p{margin:0;font-size:15.5px;line-height:1.6;color:#33333a}
 .r-more{margin-top:clamp(28px,3vw,44px)}
@@ -423,7 +427,7 @@ details .more p{font-size:15.5px;color:#3a3a40}
         <h2 class="m-name rv"><span class="greeting">I'm</span> <span id="mName">Kaylee <em>Xie</em></span></h2>
         <div class="m-points rv">
           <p class="m-lead">I’m a high school student in Nanjing, China. I paint, make short films, and ask questions about how people make sense of what they see.</p>
-          <p>My curiosity has taken me from the gardens of my hometown to a brain-computer interface research ward. Sometimes an encounter becomes a film; sometimes it stays with me until I find a way to paint it. Watching European students respond to Chinese micro-dramas brought another question into focus: what do other people notice in a story that feels familiar to me?</p>
+          <p>My curiosity has taken me from the gardens of my hometown to a brain-computer interface research ward. Sometimes an encounter becomes a film; sometimes it stays with me until I find a way to paint it. Watching European university students respond to Chinese micro-dramas brought another question into focus: what do other people notice in a story that feels familiar to me?</p>
           <p>This website brings together my artwork, films, and early research. Across them, I’m learning to look more closely, listen to other interpretations, and reconsider my own.</p>
         </div>
       </div>
@@ -583,22 +587,24 @@ details .more p{font-size:15.5px;color:#3a3a40}
     <div class="grid r-top">
       <div class="r-left rv">
         <p class="question">Learning to see a story through <em>someone else's eyes.</em></p>
+        <p class="r-intro">A story can carry cultural conventions that feel familiar to some viewers but less so to others. I&nbsp;wanted to explore how a small group of European university students in Nanjing experienced Chinese <span class="nw">historical-romance</span> <span class="nw">micro-dramas</span>: what captured their attention, how they understood the stories, and how their responses unfolded across different narrative moments.</p>
       </div>
     </div>
     <div class="grid r-cols">
       <div class="rv">
-        <h3>The viewer's part</h3>
-        <p>A story carries gestures and conventions its maker may take for granted. I wanted to attend to that distance when European viewers encountered Chinese <span class="nw">historical-romance</span> micro-dramas, bringing their own cultural experiences to images familiar to me.</p>
+        <h3>The viewers</h3>
+        <p>We conducted a pilot study with 12 European university students in Nanjing, who watched two Chinese <span class="nw">historical-romance</span> <span class="nw">micro-dramas</span> totaling approximately 40 minutes. Before viewing, participants completed background, media-use, and <span class="nw">individualism–collectivism</span> questionnaires.</p>
       </div>
       <div class="rv">
         <h3>Watching and listening</h3>
-        <p>I proposed and ran a pilot with a supervisor at Nanjing University. Twelve European university students in Nanjing watched two micro-dramas during EEG recording. Questionnaires and interviews gave them room to describe what they had understood.</p>
+        <p>We recorded EEG throughout, collected brief responses after each episode, and gathered overall evaluations and semi-structured interviews afterward to explore their understanding, preferences, and emotional responses.</p>
       </div>
       <div class="rv">
         <h3>An open inquiry</h3>
-        <p>Comparing key sound effects with background music, we found no consistent difference in how closely viewers' EEG responses matched. That open result led me back to the viewers. I want to keep exploring the context each person brings to a scene.</p>
+        <p>Comparing key sound effects with background music, we found no consistent difference in how closely viewers' EEG responses matched. Yet some moments showed relatively high neural synchrony, while questionnaires and interviews revealed different responses to plot, emotional intensity, and humor.</p>
       </div>
     </div>
+    <p class="r-close rv">That open result led me back to the viewers. We want to keep exploring the context each person brings to a scene.</p>
     <div class="r-more rv">
       <details>
         <summary>Continuing the inquiry</summary>
